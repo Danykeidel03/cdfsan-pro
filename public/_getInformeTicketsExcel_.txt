@@ -1,0 +1,11 @@
+2024-05-13 09:20:08.73610 -> 01-01-2024 00:00:00
+2024-05-13 09:20:08.76083 -> 13-01-2024 23:59:59
+2024-05-13 09:24:04.150932 -> select `f`.`imp_neto` as `importeBase`, `f`.`imp_total_compra_moneda_euro` as `importePagado` from `hc_facturacion` as `f` left join `hc_devolucion` as `d` on `f`.`id_factura` = `d`.`id_factura` where d.id_factura is null and f.fec_creacion >= "2024-01-01 00:00:00" and f.fec_creacion <= "2024-01-13 23:59:59"
+2024-05-13 09:25:02.964362 -> select `f`.`imp_neto` as `importeBase`, `f`.`imp_total_compra_moneda_euro` as `importePagado` from `hc_facturacion` as `f` left join `hc_devolucion` as `d` on `f`.`id_factura` = `d`.`id_factura` where d.id_factura is null and f.fec_creacion >= "2024-01-01 00:00:00" and f.fec_creacion <= "2024-01-13 23:59:59"
+2024-05-13 09:28:49.528948 -> select `f`.`imp_neto` as `importeBase`, `f`.`imp_total_compra_moneda_euro` as `importePagado`, `f`.`desc_factura` as `numeracion` from `hc_facturacion` as `f` left join `hc_devolucion` as `d` on `f`.`id_factura` = `d`.`id_factura` where d.id_factura is null and f.fec_creacion >= "2024-01-01 00:00:00" and f.fec_creacion <= "2024-01-13 23:59:59"
+2024-05-13 09:45:14.745778 -> select f.imp_neto as importeBase, f.imp_total_compra_moneda_euro as importePagado, f.desc_factura as numeracion
+            from hc_facturacion as f
+        where f.fec_creacion >=  "2024-01-01 00:00:00" and f.fec_creacion <= "2024-01-13 23:59:59" AND f.id_factura NOT IN (SELECT id_factura FROM hc_devolucion)
+2024-05-13 09:47:03.125959 -> select f.imp_neto as importeBase, f.imp_total_compra_moneda_euro as importePagado, f.desc_factura as numeracion
+            from hc_facturacion as f
+        where f.fec_creacion >=  "2024-01-01 00:00:00" and f.fec_creacion <= "2024-01-13 23:59:59" AND f.id_factura NOT IN (SELECT id_factura FROM hc_devolucion WHERE id_tienda = 50)

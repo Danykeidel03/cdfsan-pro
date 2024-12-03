@@ -1,0 +1,35 @@
+.container .card-header,
+.navbar.navbar-expand-md.navbar-light.bg-white.shadow-sm,
+.btn.btn-primary{
+    background-color: #35393C !important;
+    color: #f3e6e0;
+}
+
+html, main {
+    background-color: #f3e6e0;
+}
+
+.form-group.row,
+.form-group.row div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.form-group.row label,
+.form-group.row div{
+    width: 100%;
+    max-width: 100%;
+    text-align: left !important;
+    padding: 0;
+    margin: 0;
+}
+
+@media (max-width: 767px){
+    .navbar-toggler{
+        display: none;
+    }
+}

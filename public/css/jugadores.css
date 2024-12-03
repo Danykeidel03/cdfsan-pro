@@ -1,0 +1,276 @@
+.content-wrapper{
+    display: flex;
+    justify-content: center;
+}
+
+.titleJugadores {
+    padding-top: 50px;
+    font-size: 60px;
+    text-align: center;
+}
+
+.content{
+    width: 100%;
+}
+
+.overlay{
+    background-color: rgba(0,0,0,.4);
+    height: 100%;
+    left: 0;
+    overflow: auto;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 9;
+}
+
+.formJugador{
+    width: 450px;
+    max-width: 90%;
+    margin: 0 auto;
+    border-radius: 16px;
+    padding: 40px 28px;
+    row-gap: 24px;
+    display: flex;
+    flex-direction: column;
+    top: 0;
+    position: relative;
+    z-index: 10;
+    background-color: white;
+}
+
+.formJugador form{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.formJugador form input,
+.formJugador form select{
+    padding: 10px;
+    border: 1px solid #f3e6e0;
+    border-radius: 16px;
+    background-color: transparent;
+}
+
+.formJugador form .addJugadores{
+    background-color: #35393C;
+    color: #f3e6e0;
+    border: none;
+}
+
+.ventanaModal{
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.buttonVentana,
+.dt-layout-cell.dt-end .dt-paging.paging_full_numbers button{
+    background-color: #35393C;
+    color: #f3e6e0;
+    border: none;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.dt-paging.paging_full_numbers{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 60px;
+}
+
+.dt-layout-cell.dt-start:first-child label{
+    display: none;
+}
+
+.dt-layout-cell.dt-end .dt-search input{
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 16px;
+    background-color: white;
+}
+
+#jugadores{
+    margin-top: 25px;
+}
+
+#jugadores thead th,
+#jugadores tbody td{
+    max-width: 33%;
+    width: 100%;
+    text-align: center;
+}
+
+.btnAddPlayer{
+    background-color: #35393C;
+    color: #f3e6e0;
+    border: none;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+#jugadoresEquipo thead th,
+#jugadoresEquipo tbody td,
+#jugadoresTitulares thead th,
+#jugadoresTitulares tbody td,
+#jugadores thead th,
+#jugadores tbody td{
+    max-width: 25%;
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    background-color: white;
+    border-right: 1px solid;
+    border-left: 1px solid;
+    padding: 10px;
+}
+
+.container-fluid{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.dt-paging-button.disabled.first,
+.dt-paging-button.disabled.last{
+    display: none;
+}
+
+#panel-datos {
+    max-width: 1280px;
+    width: 100%;
+    position: relative;
+}
+
+.todosJugadores .dt-search {
+    display: none;
+}
+
+.futurosPartidos{
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px; /* Espacio entre los elementos */
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.partido {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: unset;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 16px;
+    padding: 8px;
+    gap: 20px;
+}
+
+#jugadoresTitulares thead {
+    display: none;
+}
+
+.todosJugadores #jugadoresEquipo{
+    border: 0;
+}
+
+#jugadoresSuplentes thead{
+    display: none;
+}
+
+.ventanaModal.suplentes .formJugador {
+    width: 300px;
+}
+
+#jugadoresSuplentes td {
+    width: 50%;
+    text-align: center;
+}
+
+#jugadoresSuplentes_wrapper{
+    width: 100%;
+}
+
+.todosJugadores .dt-paging.paging_full_numbers{
+    display: none;
+}
+
+.todosJugadores #jugadoresEquipo thead th, .todosJugadores #jugadoresEquipo tbody td{
+    border: 0;
+}
+
+.imgEquipo{
+    width: 100%;
+    max-width: 40%;
+    display: flex;
+    justify-content: center;
+}
+
+.datos {
+    width: 60%;
+}
+
+.datos div {
+    font-size: 22px;
+}
+
+#jugadoresEquipo,#jugadoresTitulares{
+    border: 1px solid black;
+}
+
+#jugadoresTitulares_wrapper {
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+#jugadoresTitulares_wrapper .dt-layout-cell.dt-end .dt-search input{
+    display: none;
+}
+
+@media(max-width: 767px){
+    .futurosPartidos{
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media(max-width: 500px){
+    .futurosPartidos{
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media(max-width: 600px) {
+
+    .partido{
+        width: 100%;
+    }
+
+    .titleJugadores {
+        font-size: 40px;
+        padding-bottom: 30px;
+    }
+
+    .dt-layout-cell.dt-end .dt-search input,
+    .buttonVentana {
+        width: 100%;
+    }
+
+    #jugadoresEquipo thead th,
+    #jugadoresEquipo tbody td {
+        font-size: 14px;
+        max-width: 16.66%;
+    }
+    #jugadoresEquipo thead th:first-child, #jugadoresEquipo tbody td:first-child{
+        max-width: 50%;
+    }
+}

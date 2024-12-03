@@ -1,0 +1,20 @@
+  stages:
+    - deploy-main 
+  deploy-main:
+    stage: deploy-main
+    variables:
+      GIT_STRATEGY: none  # Desactiva el clonado automático
+    script:
+      - cd C:\inetpub\wwwroot\hartem_tpv_panel # Cambia al directorio deseado
+      - git config --global --add safe.directory C:/inetpub/wwwroot/hartem_tpv_panel
+      - git reset --hard
+      - git pull https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.mtda.es/ivanmartinez/hartem_tpv_panel.git main
+      - composer install
+      - composer update
+    tags:
+      - staging
+    environment:
+      name: staging
+      url: http://192.168.0.112
+    only:
+      - main

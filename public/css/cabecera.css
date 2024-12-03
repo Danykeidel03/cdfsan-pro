@@ -1,0 +1,21 @@
+.sidebar-mini.sidebar-collapse .main-sidebar,
+.main-header.navbar.navbar-expand.navbar-white.navbar-dark{
+    background-color: #35393C !important;
+    color: #f3e6e0;
+}
+
+.content-wrapper{
+    background-color: #f3e6e0;
+}
+
+.containerGeneral {
+    max-width: 1280px;
+    width: 100%;
+}
+
+.general{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+}

@@ -1,0 +1,211 @@
+.content-wrapper{
+    display: flex;
+    justify-content: center;
+}
+
+.tittleEquipos {
+    padding-top: 50px;
+    font-size: 60px;
+    text-align: center;
+}
+
+.content{
+    width: 100%;
+}
+
+.equipo-container {
+    height: 150px;
+    max-width: 100%;
+    min-width: 375px;
+    padding: 0 32px;
+}
+
+.equipo {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    padding: 5px;
+    border: 1px solid black;
+    border-radius: 12px;
+    background-color: white;
+}
+
+.infoEquipo {
+    width: calc(100% - 150px);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.infoEquipo a,
+.infoEquipo p{
+    font-size: 24px;
+    text-decoration: none;
+    color: black;
+}
+
+.marcador {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+}
+
+.sanAn,.otroEquipo {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    max-height: 260px;
+    margin-top: 60px;
+}
+
+.sanAn img,.otroEquipo img {
+    height: auto;
+    width: 200px;
+}
+
+.sanAn .nombre,
+.otroEquipo .nombre{
+    font-size: 24px;
+    text-align: center;
+}
+
+.horario div{
+    font-size: 28px;
+    text-align: center;
+}
+
+.inicioPartido {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    background-color: #35393C;
+    color: #f3e6e0;
+    border: none;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.btnCambio, .btnGol{
+    background: none;
+    border: 0;
+}
+
+.terminarPartido {
+    position: absolute;
+    top: 50px;
+    left: 120px;
+    background-color: #35393C;
+    color: #f3e6e0;
+    border: none;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+#jugadoresTitulares tbody .dt-type-numeric {
+    max-width: 10%;
+}
+
+.todosJugadores {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+}
+
+.sacarTitulares {
+    background-color: #35393C;
+    color: #f3e6e0;
+    border: none;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.content-header {
+    display: none;
+}
+
+#jugadoresEquipo_wrapper{
+    width: 100%;
+}
+
+.todosEquipos{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+@media (max-width: 720px){
+    .marcador{
+        gap: 50px;
+    }
+
+    .inicioPartido{
+        position: relative;
+    }
+
+    #panel-datos {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-top: 20px;
+    }
+
+    .sanAn, .otroEquipo {
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        max-height: 260px;
+        margin-top: 20px;
+    }
+
+    .dt-paging.paging_full_numbers{
+        display: none;
+    }
+
+    #jugadoresEquipo thead th, #jugadoresEquipo tbody td {
+        max-width: 50%;
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 600px){
+    .marcador{
+        gap: 50px;
+    }
+
+    .sanAn .nombre,
+    .otroEquipo .nombre{
+        font-size: 14px;
+        text-align: center;
+    }
+
+    .horario div{
+        font-size: 16px;
+        text-align: center;
+    }
+
+    .sanAn img,.otroEquipo img {
+        height: auto;
+        width: 100px;
+    }
+
+    .tittleEquipos{
+        font-size: 40px;
+        padding-bottom: 30px;
+    }
+}
+
+@media (max-width: 420px){
+    .marcador{
+        gap: 25px;
+    }
+}
