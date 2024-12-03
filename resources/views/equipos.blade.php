@@ -4,6 +4,7 @@
 @section('css')
     <link rel="stylesheet" type="text/css" href="{{ asset('css/cabecera.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/equipos.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/listadoEquipos.css') }}">
     <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
 
 @stop
