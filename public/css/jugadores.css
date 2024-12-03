@@ -116,6 +116,10 @@
     padding: 10px;
 }
 
+.content {
+    padding: 20px !important;
+}
+
 #jugadoresEquipo thead th,
 #jugadoresEquipo tbody td,
 #jugadoresTitulares thead th,
