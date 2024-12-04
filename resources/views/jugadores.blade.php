@@ -182,7 +182,7 @@
                             return res.json();
                         })
                         .then(data => {
-
+                            location.reload();
                         })
                         .catch(error => {
                             console.error('GUARDAR error:', error);

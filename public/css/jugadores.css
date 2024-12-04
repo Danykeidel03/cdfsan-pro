@@ -45,18 +45,20 @@
     gap: 20px;
 }
 
-.formJugador form input,
-.formJugador form select{
+.formJugador input,
+.formJugador select{
     padding: 10px;
     border: 1px solid #f3e6e0;
     border-radius: 16px;
     background-color: transparent;
 }
 
-.formJugador form .addJugadores{
+.formJugador .addJugadores{
     background-color: #35393C;
     color: #f3e6e0;
     border: none;
+    padding: 8px;
+    border-radius: 16px;
 }
 
 .ventanaModal{
@@ -131,8 +133,6 @@
     text-align: center;
     font-size: 18px;
     background-color: white;
-    border-right: 1px solid;
-    border-left: 1px solid;
     padding: 10px;
 }
 

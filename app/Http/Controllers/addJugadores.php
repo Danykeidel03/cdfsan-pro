@@ -27,7 +27,7 @@ class addJugadores extends Controller
     {
         switch ($request->input('accion')) {
             case "insertarJugador":
-                return $this->insertarJugador($request->input('nombre'),$request->input('apellidos'),$request->input('fechaNac'),$request->input('equipo'));
+                return $this->insertarJugador($request->input('request'));
             case "mostarEquipos":
                 return $this->mostarEquipos();
             case "mostarPlayers":
@@ -37,9 +37,16 @@ class addJugadores extends Controller
         }
     }
 
-    public function insertarJugador($nombreAdd,$apellidosAdd,$fechaNacAdd,$equipoAdd){
+    public function insertarJugador($request){
 
         $this->grabarLog('entra aqui');
+        $this->grabarLog($request);
+
+        $data = json_decode($request, true);
+        $nombreAdd = $data[0]['nombre'] ?? null;
+        $apellidosAdd = $data[0]['apellidos'] ?? null;
+        $fechaNacAdd = $data[0]['fechaNac'] ?? null;
+        $equipoAdd = $data[0]['equipo'] ?? null;
 
         $insertado = DB::table('jugadores')->insert([
             'nombre' => $nombreAdd,

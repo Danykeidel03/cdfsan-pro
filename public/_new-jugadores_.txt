@@ -1,2 +1,15 @@
 2024-12-03 12:01:54.513478 -> entra aqui
 2024-12-03 12:01:54.519812 -> insertado
+2024-12-04 07:53:18.916902 -> entra aqui
+2024-12-04 07:53:18.923445 -> [{"nombre":"hghjgjh","apellidos":"ghjgh","equipo":"0","fechaNac":""}]
+2024-12-04 07:56:14.650556 -> entra aqui
+2024-12-04 07:56:14.656464 -> [{"nombre":"fdgd","apellidos":"gfdgf","equipo":"0","fechaNac":"2024-11-27"}]
+2024-12-04 07:56:14.658370 -> insertado
+2024-12-04 07:57:34.784403 -> entra aqui
+2024-12-04 07:57:34.785078 -> [{"nombre":"daniel","apellidos":"fernandez","equipo":"0","fechaNac":""}]
+2024-12-04 07:57:39.730812 -> entra aqui
+2024-12-04 07:57:39.731132 -> [{"nombre":"daniel","apellidos":"fernandez","equipo":"0","fechaNac":"2003-01-29"}]
+2024-12-04 07:57:39.732509 -> insertado
+2024-12-04 07:59:30.605944 -> entra aqui
+2024-12-04 07:59:30.606333 -> [{"nombre":"sdasd","apellidos":"sdasda","equipo":"0","fechaNac":"2024-11-27"}]
+2024-12-04 07:59:30.613134 -> insertado

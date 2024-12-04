@@ -83,7 +83,7 @@
 
     @endphp
 @section('content')
-    <div id="panel-datos">
+    <div id="panel-datos" style="flex-direction: column ">
 
         <h1 class="tittleEquipos">Listado de equipos</h1>
         <div class="todosEquipos" style="margin-top: 50px;"></div>

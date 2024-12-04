@@ -194,6 +194,7 @@
                         })
                         .then(data => {
                            console.log(data)
+                            location.reload();
                         })
                         .catch(error => {
                             console.error('GUARDAR error:', error);
@@ -270,6 +271,7 @@
                         })
                         .then(data => {
                             console.log(data)
+                            location.reload();
                         })
                         .catch(error => {
                             console.error('GUARDAR error:', error);
@@ -379,6 +381,7 @@
                         })
                         .then(data => {
                             console.log(data)
+                            location.reload();
                         })
                         .catch(error => {
                             console.error('GUARDAR error:', error);
@@ -416,6 +419,7 @@
                             return res.json();
                         })
                         .then(data => {
+                            location.reload();
                         })
                         .catch(error => {
                             console.error('GUARDAR error:', error);

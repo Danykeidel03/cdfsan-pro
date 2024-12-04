@@ -93,46 +93,53 @@
              * Insertar jugador
              */
             function insertarJugador() {
-                Pace.track(function () {
 
                     let nombreJugador = document.querySelector('#nombreJugador').value;
                     let apellidosJugador = document.querySelector('#apellidosJugador').value;
                     let fechaNacJugador = document.querySelector('#fechaNacJugador').value;
                     let equipoJugador = document.querySelector('#equipoJugador').value;
 
-                    var form_data = new FormData();
-                    form_data.append("accion", "insertarJugador");
-                    form_data.append("nombre", nombreJugador);
-                    form_data.append("apellidos", apellidosJugador);
-                    form_data.append("fechaNac", fechaNacJugador);
-                    form_data.append("equipo", equipoJugador);
+                    let request = [];
+                    request.push({
+                        "nombre": nombreJugador,
+                        "apellidos": apellidosJugador,
+                        "equipo": equipoJugador,
+                        "fechaNac": fechaNacJugador
+                    });
 
-                    for (var value of form_data.values()) {
-                        console.log(value);
-                    }
+                    console.log(request)
 
-                    console.log("{{ csrf_token() }}")
 
-                    fetch("{{ $ajaxUrl }}", {
-                        method: 'POST',
-                        headers: {
-                            "Accept": "application/json",
-                            "X-CSRF-TOKEN": "{{ csrf_token() }}",
-                        },
-                        body: form_data,
-                        cache: 'no-cache',
-                    })
-                        .then(res => res.json())
-                        .then(data => {
-                            console.log(data)
+                    Pace.track(function () {
+
+                        var form_data = new FormData();
+                        form_data.append("accion", "insertarJugador");
+                        form_data.append("request", JSON.stringify(request));
+
+                        for (var value of form_data.values()) {}
+
+                        fetch("{{ $ajaxUrl }}", {
+                            method: 'POST',
+                            headers: {
+                                "Accept": "application/json",
+                                "X-CSRF-TOKEN": "{{ csrf_token() }}",
+                            },
+                            body: form_data,
+                            cache: 'no-cache',
                         })
-                        .catch(error => {
-                            console.error('Error:', error);
-                        })
-                        .finally(() => {
-                            console.log('Palabra insertada y tabla actualizada');
-                        });
-                });
+                            .then(res => {
+                                return res.json();
+                            })
+                            .then(data => {
+                                console.log(data)
+                                location.reload();
+                            })
+                            .catch(error => {
+                                console.error('GUARDAR error:', error);
+                            })
+                            .finally(() => {
+                            });
+                    });
             }
 
             /**
@@ -218,17 +225,15 @@
             <div class="ventanaModal" style="display: none">
                 <div class="overlay"></div>
                 <div class="formJugador">
-                    <form>
-                        <input type="text" id="nombreJugador" placeholder="Nombre del jugador" required>
-                        <input type="text" id="apellidosJugador" placeholder="Apellidos del jugador" required>
-                        <input type="date" id="fechaNacJugador" required>
-                        <select id="equipoJugador" required>
-                            <option value="">Seleccione un equipo</option>
-                            <option value="0">Sin Equipo</option>
-                        </select>
-                        <input type='submit' id='addJugadores' name='addJugadores' class='addJugadores'
-                               onclick="insertarJugador()">
-                    </form>
+                    <input type="text" id="nombreJugador" placeholder="Nombre del jugador" required>
+                    <input type="text" id="apellidosJugador" placeholder="Apellidos del jugador" required>
+                    <input type="date" id="fechaNacJugador" required>
+                    <select id="equipoJugador" required>
+                        <option value="">Seleccione un equipo</option>
+                        <option value="0">Sin Equipo</option>
+                    </select>
+                    <button id='addJugadores' name='addJugadores' class='addJugadores'
+                            onclick="insertarJugador()"> Añadir </button>
                 </div>
             </div>
         </div>
