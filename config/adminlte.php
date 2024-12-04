@@ -46,7 +46,7 @@ return [
     */
 
     'logo' => '<b>CDFSAN</b>',
-    'logo_img' => 'images/favicon_lienzo.png',
+    'logo_img' => 'public/images/favicon_lienzo.png',
     'logo_img_class' => 'brand-image',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
