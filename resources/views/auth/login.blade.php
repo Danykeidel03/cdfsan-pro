@@ -7,6 +7,8 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
+        <img src="images/favicon_lienzo.png" style="width: 100px; height: auto"/>
+
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Sistema de traducción') }}</div>
@@ -54,21 +56,22 @@
 {{--                                </div>--}}
 {{--                            </div>--}}
 {{--                        </div>--}}
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary" style="background-color:#1919B8; ">
-                                    {{ __('Acceder') }}
-                                </button>
+                        <div class="funciones">
+                            <div class="form-group row mb-0">
+                                <div class="col-md-8 offset-md-4">
+                                    <button type="submit" class="btn btn-primary" style="background-color:#1919B8; ">
+                                        {{ __('Acceder') }}
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}"  style="color:#1b1464;">
-                                        {{ __('¿Has olvidado tu contraseña?') }}
-                                    </a>
-                                @endif
+                            <div class="form-group row mb-0">
+                                <div class="col-md-8 offset-md-4">
+                                    @if (Route::has('password.request'))
+                                        <a class="btn btn-link" href="{{ route('password.request') }}"  style="color:#1b1464;">
+                                            {{ __('¿Has olvidado tu contraseña?') }}
+                                        </a>
+                                    @endif
+                                </div>
                             </div>
                         </div>
                     </form>

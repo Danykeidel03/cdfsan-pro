@@ -3,6 +3,8 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
+        <img src="../images/favicon_lienzo.png" style="width: 100px; height: auto"/>
+
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header" style="background-color: #F5B805;">{{ __('Restaurar contraseña') }}</div>
