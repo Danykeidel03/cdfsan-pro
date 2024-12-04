@@ -3,6 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
+        <img src="https://cdfsanandres.es/public_html/public/images/favicon_lienzo.png" style="width: 100px; height: auto"/>
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Recordar contraseña') }}</div>
