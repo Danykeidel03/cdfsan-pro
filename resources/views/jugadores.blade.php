@@ -285,7 +285,6 @@
                               <div class="datos">
                                 <div class="nombre">${partido.visitante}</div>
                                 <div class="fecha">${partido.hora}</div>
-                                <div class="acciones">Acciones</div>
                               </div>
                             `;
 
