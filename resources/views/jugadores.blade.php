@@ -56,6 +56,7 @@
                         sortAscending: ": activate to sort column ascending",
                         sortDescending: ": activate to sort column descending"
                     },
+                    pageLength: 50,  // Establece la paginación a 50 por página
                     initComplete: function () {
                         var $buscar = $('.dt-search input');
                         $buscar.attr('placeholder', 'Buscar en palabras');
