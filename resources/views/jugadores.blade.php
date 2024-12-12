@@ -228,11 +228,13 @@
                                 if(jugador.equipo === "null" || jugador.equipo === null){
                                     jugador.equipo = "Ninguno"
                                 }
+
                                 tablaTodos.row.add([
                                     jugador.nombreCompleto,    // Columna 1: Nombre del jugador
                                     jugador.partidos,
                                     jugador.minutos,
                                     jugador.goles,
+                                    jugador.media_total,
                                 ]);
                             });
                             tablaTodos.draw();
@@ -346,6 +348,7 @@
                     <th>Partidos</th>
                     <th>Minutos</th>
                     <th>Goles</th>
+                    <th>Media</th>
                 </tr>
                 </thead>
             </table>
