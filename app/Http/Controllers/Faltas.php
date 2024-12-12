@@ -32,6 +32,8 @@ class Faltas extends Jugadores
                 return $this->mostarJugadores($request->input('equipo'));
             case "addFalta":
                 return $this->addFaltas($request->input('equipo'),$request->input('jugadoresFalta'),$request->input('fecha'));
+            case "addNotas":
+                return $this->addNotas($request->input('equipo'),$request->input('jugadoresFalta'),$request->input('fecha'),$request->input('nota'));
             default:
                 return $this->consultar();
         }
@@ -95,4 +97,56 @@ class Faltas extends Jugadores
         }
 
     }
+
+
+    public function addNotas($equipo, $jugadores, $fecha, $notas){
+        $arrayFaltas = explode(',', $jugadores);
+        $arrayNotas = json_decode($notas, true);
+
+        foreach ($arrayFaltas as $jugador) {
+            $notaJugador = null;
+            foreach ($arrayNotas as $nota) {
+                if (isset($nota['id']) && $nota['id'] == $jugador) {
+                    $notaJugador = $nota;
+                    break;
+                }
+            }
+
+            if ($notaJugador) {
+                if (isset($notaJugador['rendimiento']) && isset($notaJugador['actitud'])) {
+                    $media = ($notaJugador['rendimiento'] + $notaJugador['actitud']) / 2;
+
+                    $insertado = DB::table('notas_jugadores')->insert([
+                        'id_jugador' => $jugador,
+                        'fecha' => $fecha,
+                        'id_equipoSan' => $equipo,
+                        'nota_media' => $media,
+                    ]);
+
+                    $notasTotales = DB::table('notas_jugadores')
+                        ->select('nota_media')
+                        ->where('id_jugador', $jugador)
+                        ->get();
+
+                    $notaTotal = 0;
+
+                    foreach ($notasTotales as $nota) {
+                        $notaTotal = $notaTotal + $nota->nota_media;
+                    }
+
+                    $notaTotal = $notaTotal / count($notasTotales);
+
+
+                    DB::table('jugadores')
+                        ->where('id_jugador', '=', $jugador)
+                        ->update([
+                            'media_total' => $notaTotal
+                        ]);
+                }
+            } else {
+                $this->grabarLog("Jugador: $jugador, Sin notas asociadas.");
+            }
+        }
+    }
+
 }

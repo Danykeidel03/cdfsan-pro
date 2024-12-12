@@ -38,6 +38,7 @@
             });
             let btnAddFalta = document.querySelector('.crearFaltas');
             btnAddFalta.addEventListener('click', () => addFaltas(id_equipo));
+            btnAddFalta.addEventListener('click', () => addNotas(id_equipo));
         });
 
         /**
@@ -110,7 +111,10 @@
                             tablaTodos.row.add([
                                 jugador.nombreCompleto,    // Columna 1: Nombre del jugador
                                 jugador.partidos,
+                                `<input type="numer" class="actitudJugador" id="${jugador.id_jugador}" />`,
+                                `<input type="numer" class="rendimientoJugador" id="${jugador.id_jugador}" />`,
                                 `<input type="checkbox" class="faltas-asistencia" id="${jugador.id_jugador}" />`
+
                             ]);
                         });
                         tablaTodos.draw();
@@ -159,6 +163,50 @@
                     });
             });
         }
+
+
+        function addNotas(equipo){
+            Pace.track(function () {
+
+                const checkboxesNoMarcados = document.querySelectorAll('.faltas-asistencia[type="checkbox"]:not(:checked)');
+                const arrayCheckboxes = Array.from(checkboxesNoMarcados).map(checkbox => checkbox.id);
+                const arrayNotas = Array.from(document.querySelectorAll('.rendimientoJugador')).map((element, index) => ({
+                    id: element.id,
+                    rendimiento: element.value,
+                    actitud: document.querySelectorAll('.actitudJugador')[index]?.value || null
+                }));
+
+                let fecha = document.querySelector('#fecha-faltas')
+
+                var form_data = new FormData();
+                form_data.append("accion", "addNotas");
+                form_data.append("equipo", equipo);
+                form_data.append("jugadoresFalta", arrayCheckboxes);
+                form_data.append("fecha", fecha.value);
+                form_data.append("nota", JSON.stringify(arrayNotas));
+
+                fetch("{{ $ajaxUrl }}", {
+                    method: 'POST',
+                    headers: {
+                        "Accept": "application/json",
+                        "X-CSRF-TOKEN": "{{ csrf_token() }}",
+                    },
+                    body: form_data,
+                    cache: 'no-cache',
+                })
+                    .then(res => {
+                        return res.json();
+                    })
+                    .then(data => {
+                    })
+                    .catch(error => {
+                        console.error('GUARDAR error:', error);
+                    })
+                    .finally(() => {
+                        console.log('jugadores sacados');
+                    });
+            });
+        }
     </script>
 @endpush
 @php
@@ -174,7 +222,9 @@
                 <tr>
                     <th>Nombre</th>
                     <th>Partidos</th>
-                    <th>Faltas</th>
+                    <th>Actitud</th>
+                    <th>Rendimiento</th>
+                    <th>Falta</th>
                 </tr>
                 </thead>
             </table>

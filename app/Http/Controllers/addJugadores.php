@@ -56,7 +56,8 @@ class addJugadores extends Controller
             'minutos' => 0,
             'partidos' => 0,
             'goles' => 0,
-            'faltasTotales' => 0
+            'faltasTotales' => 0,
+            'media_total' => 0
         ]);
 
         if ($insertado) {
