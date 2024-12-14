@@ -14,6 +14,10 @@
     <script>
         var tablaTodos
         $(document).ready(function () {
+            document.querySelector('.verFechas').addEventListener('click', abrirOverlay)
+            document.querySelector('.overlay').addEventListener('click', abrirOverlay)
+
+
             const currentUrl = new URL(window.location.href); // Crea una instancia de URL desde la URL actual
             const id_equipo = currentUrl.searchParams.get('id_equipo'); // Obtiene el valor de id_partido
             obtenerInformacionEquipos(id_equipo);
@@ -39,6 +43,17 @@
             let btnAddFalta = document.querySelector('.crearFaltas');
             btnAddFalta.addEventListener('click', () => addFaltas(id_equipo));
             btnAddFalta.addEventListener('click', () => addNotas(id_equipo));
+
+            // getFechas(id_equipo)
+
+            const inputFecha = document.getElementById("select-fecha-faltas");
+
+            inputFecha.addEventListener("change", (event) => {
+                console.log("Fecha seleccionada:", event.target.value);
+                getNotasBasedOnDay(event.target.value)
+            });
+
+
         });
 
         /**
@@ -207,6 +222,82 @@
                     });
             });
         }
+
+        {{--function getFechas(equipo){--}}
+
+        {{--    var form_data = new FormData();--}}
+        {{--    form_data.append("accion", "getFechas");--}}
+        {{--    form_data.append("equipo", equipo);--}}
+
+        {{--    fetch("{{ $ajaxUrl }}", {--}}
+        {{--        method: 'POST',--}}
+        {{--        headers: {--}}
+        {{--            "Accept": "application/json",--}}
+        {{--            "X-CSRF-TOKEN": "{{ csrf_token() }}",--}}
+        {{--        },--}}
+        {{--        body: form_data,--}}
+        {{--        cache: 'no-cache',--}}
+        {{--    })--}}
+        {{--        .then(res => {--}}
+        {{--            return res.json();--}}
+        {{--        })--}}
+        {{--        .then(data => {--}}
+        {{--            data.forEach( item => {--}}
+        {{--                console.log(item.fecha)--}}
+        {{--            })--}}
+        {{--        })--}}
+        {{--        .catch(error => {--}}
+        {{--            console.error('GUARDAR error:', error);--}}
+        {{--        })--}}
+        {{--        .finally(() => {--}}
+        {{--            console.log('fechas sacadas');--}}
+        {{--        });--}}
+        {{--}--}}
+
+        function abrirOverlay(){
+            let over = document.querySelector('.ventanaModal');
+            if (window.getComputedStyle(over).display === 'none') {
+                over.style.display = 'flex';
+            } else {
+                over.style.display = 'none';
+            }
+        }
+
+        function getNotasBasedOnDay(day){
+            var form_data = new FormData();
+            form_data.append("accion", "getNotasBasedOnDay");
+            form_data.append("dia", day);
+
+            fetch("{{ $ajaxUrl }}", {
+                method: 'POST',
+                headers: {
+                    "Accept": "application/json",
+                    "X-CSRF-TOKEN": "{{ csrf_token() }}",
+                },
+                body: form_data,
+                cache: 'no-cache',
+            })
+                .then(res => {
+                    return res.json();
+                })
+                .then(data => {
+                    let tabla = "<table style='width: 100%' border='1'><tr><th>Nombre</th><th>Nota</th></tr>";
+
+                    data.forEach(item => {
+                        tabla += `<tr><td>${item.nombre}</td><td>${item.nota}</td></tr>`;
+                    });
+                    tabla += "</table>";
+                    console.log(tabla);
+                    document.querySelector(".tablaNotas").innerHTML = tabla;
+                })
+                .catch(error => {
+                    console.error('GUARDAR error:', error);
+                })
+                .finally(() => {
+                    console.log('fechas sacadas');
+                });
+        }
+
     </script>
 @endpush
 @php
@@ -215,6 +306,15 @@
 @section('content')
     <div id="panel-datos">
         <h1 class="titleJugadores"></h1>
+        <button class="verFechas buttonVentana">Ver Notas</button>
+        <div class="ventanaModal" style="display: none">
+            <div class="overlay"></div>
+            <div class="formJugador">
+                <p>Seleccciona una fecha</p>
+                <input type="date" id="select-fecha-faltas" />
+                <div class="tablaNotas"></div>
+            </div>
+        </div>
         <div class="todosJugadores" style="margin-top: 50px;">
             <input type="date" id="fecha-faltas" />
             <table id="jugadoresEquipo" class="display" style="width:100%; padding-top: 20px;">
