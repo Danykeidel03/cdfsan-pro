@@ -35,6 +35,7 @@
                     sortAscending: ": activate to sort column ascending",
                     sortDescending: ": activate to sort column descending"
                 },
+                pageLength: 50,  // Establece la paginación a 50 por página
                 initComplete: function () {
                     var $buscar = $('.dt-search input');
                     $buscar.attr('placeholder', 'Buscar en palabras');
@@ -125,7 +126,6 @@
                             }
                             tablaTodos.row.add([
                                 jugador.nombreCompleto,    // Columna 1: Nombre del jugador
-                                jugador.partidos,
                                 `<input type="numer" class="actitudJugador" id="${jugador.id_jugador}" />`,
                                 `<input type="numer" class="rendimientoJugador" id="${jugador.id_jugador}" />`,
                                 `<input type="checkbox" class="faltas-asistencia" id="${jugador.id_jugador}" />`
@@ -321,7 +321,6 @@
                 <thead>
                 <tr>
                     <th>Nombre</th>
-                    <th>Partidos</th>
                     <th>Actitud</th>
                     <th>Rendimiento</th>
                     <th>Falta</th>

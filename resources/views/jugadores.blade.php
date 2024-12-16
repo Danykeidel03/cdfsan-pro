@@ -56,6 +56,7 @@
                         sortAscending: ": activate to sort column ascending",
                         sortDescending: ": activate to sort column descending"
                     },
+                    pageLength: 50,  // Establece la paginación a 50 por página
                     initComplete: function () {
                         var $buscar = $('.dt-search input');
                         $buscar.attr('placeholder', 'Buscar en palabras');
@@ -228,11 +229,13 @@
                                 if(jugador.equipo === "null" || jugador.equipo === null){
                                     jugador.equipo = "Ninguno"
                                 }
+
                                 tablaTodos.row.add([
                                     jugador.nombreCompleto,    // Columna 1: Nombre del jugador
                                     jugador.partidos,
                                     jugador.minutos,
                                     jugador.goles,
+                                    jugador.media_total,
                                 ]);
                             });
                             tablaTodos.draw();
@@ -346,6 +349,7 @@
                     <th>Partidos</th>
                     <th>Minutos</th>
                     <th>Goles</th>
+                    <th>Media</th>
                 </tr>
                 </thead>
             </table>

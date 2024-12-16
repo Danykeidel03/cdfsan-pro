@@ -251,6 +251,15 @@
         display: flex;
         flex-direction: column;
     }
+
+    #jugadoresEquipo thead th,
+    #jugadoresEquipo tbody td,
+    #jugadoresTitulares thead th,
+    #jugadoresTitulares tbody td,
+    #jugadores thead th,
+    #jugadores tbody td{
+        padding: 5px;
+    }
 }
 
 @media(max-width: 600px) {
@@ -270,9 +279,11 @@
     }
 
     #jugadoresEquipo thead th,
-    #jugadoresEquipo tbody td {
+    #jugadoresEquipo tbody td,
+    #jugadoresEquipo tbody td .actitudJugador,
+    #jugadoresEquipo tbody td .rendimientoJugador {
         font-size: 14px;
-        max-width: 16.66%;
+        max-width: 25%;
     }
     #jugadoresEquipo thead th:first-child, #jugadoresEquipo tbody td:first-child{
         max-width: 50%;
