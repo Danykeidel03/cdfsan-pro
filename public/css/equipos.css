@@ -17,6 +17,7 @@
 #jugadoresEquipo td,
 #jugadoresEquipo th{
     width: 50%;
+    max-width: 100%;
 }
 
 .content{
