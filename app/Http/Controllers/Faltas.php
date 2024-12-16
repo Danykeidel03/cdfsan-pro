@@ -21,13 +21,17 @@ class Faltas extends Jugadores
 
     /**
      * Trata que acción hay que realizar y la ejecuta
-     * @return false|Application|Factory|View|string
+     * @return false|\Illuminate\Database\Query\Builder|string
      */
     public function index(Request $request)
     {
         switch ($request->input('accion')) {
             case "mostarEquipo":
                 return $this->mostarEquipo($request->input('equipo'));
+            case "getFechas":
+                return $this->getFechasFaltas($request->input('equipo'));
+            case "getNotasBasedOnDay":
+                return $this->getNotasBasedOnDay($request->input('dia'));
             case "mostarJugadoresEquipo":
                 return $this->mostarJugadores($request->input('equipo'));
             case "addFalta":
@@ -37,6 +41,40 @@ class Faltas extends Jugadores
             default:
                 return $this->consultar();
         }
+    }
+
+    public function getNotasBasedOnDay($dia)
+    {
+        $jugadoresNotas = DB::table('notas_jugadores')
+            ->join('jugadores', 'notas_jugadores.id_jugador', '=', 'jugadores.id_jugador')
+            ->select('jugadores.nombre', 'notas_jugadores.nota_media')
+            ->where('notas_jugadores.fecha', $dia)
+            ->get();
+
+        // Convertir los resultados a un array estructurado
+        $resultado = $jugadoresNotas->map(function ($item) {
+            return [
+                'nombre' => $item->nombre,
+                'nota' => $item->nota_media,
+            ];
+        })->toArray();
+
+        // Retornar el resultado
+        return $resultado;
+    }
+
+
+    public function getFechasFaltas($equipo){
+        $fechasEquipo = DB::table('notas_jugadores')
+            ->select('fecha')
+            ->where('id_equipoSan', $equipo)
+            ->distinct()
+            ->get();
+
+        $this->grabarLog($fechasEquipo);
+
+        return $fechasEquipo;
+
     }
 
     /**
