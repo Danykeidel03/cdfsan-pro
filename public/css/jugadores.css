@@ -110,6 +110,11 @@
     text-align: center;
 }
 
+.verFechasModal{
+    position: fixed;
+    height: 100vh;
+}
+
 .btnAddPlayer{
     background-color: #35393C;
     color: #f3e6e0;
@@ -231,6 +236,7 @@
 .tablaNotas td{
     border: 0;
     text-align: center;
+    width: 50%;
 }
 
 .datos div {

@@ -307,7 +307,7 @@
     <div id="panel-datos">
         <h1 class="titleJugadores"></h1>
         <button class="verFechas buttonVentana">Ver Notas</button>
-        <div class="ventanaModal" style="display: none">
+        <div class="ventanaModal verFechasModal" style="display: none">
             <div class="overlay"></div>
             <div class="formJugador">
                 <p>Seleccciona una fecha</p>
