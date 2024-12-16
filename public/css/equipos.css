@@ -10,7 +10,7 @@
 }
 
 .partidoJugar{
-    display: block;
+    display: block !important;
     padding: 0;
 }
 
