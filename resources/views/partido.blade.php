@@ -436,7 +436,7 @@
 
     @endphp
 @section('content')
-    <div id="panel-datos partidoJugar">
+    <div id="panel-datos" class="partidoJugar">
         <div class="btnMatch">
             <button class="terminarPartido" >Finalizar</button>
             <button class="inicioPartido">Iniciar Partido</button>
