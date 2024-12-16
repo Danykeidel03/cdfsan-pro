@@ -223,6 +223,16 @@
     width: 60%;
 }
 
+.tablaNotas table{
+    border: 0;
+}
+
+.tablaNotas th,
+.tablaNotas td{
+    border: 0;
+    text-align: center;
+}
+
 .datos div {
     font-size: 22px;
 }
@@ -262,11 +272,24 @@
     }
 }
 
-@media(max-width: 600px) {
+#jugadoresEquipo{
+    display: flex;
+    flex-direction: column;
+}
 
-    .partido{
-        width: 100%;
-    }
+.partido,
+#jugadoresEquipo tr{
+    width: 100%;
+    display: flex;
+}
+
+
+#jugadoresEquipo tbody td .actitudJugador,
+#jugadoresEquipo tbody td .rendimientoJugador{
+    width: 100%;
+}
+
+@media(max-width: 600px) {
 
     .titleJugadores {
         font-size: 40px;
@@ -279,13 +302,28 @@
     }
 
     #jugadoresEquipo thead th,
-    #jugadoresEquipo tbody td,
-    #jugadoresEquipo tbody td .actitudJugador,
-    #jugadoresEquipo tbody td .rendimientoJugador {
-        font-size: 14px;
+    #jugadoresEquipo tbody td {
+        font-size: 13px;
         max-width: 25%;
     }
     #jugadoresEquipo thead th:first-child, #jugadoresEquipo tbody td:first-child{
         max-width: 50%;
+    }
+}
+
+@media(max-width: 375px) {
+
+    #jugadoresEquipo thead th,
+    #jugadoresEquipo tbody td {
+        font-size: 12px;
+        max-width: 25%;
+    }
+
+    #jugadoresEquipo thead th, #jugadoresEquipo tbody td{
+        max-width: 30%;
+    }
+
+    #jugadoresEquipo thead th:last-child, #jugadoresEquipo tbody td:last-child{
+        width: 30%;
     }
 }
