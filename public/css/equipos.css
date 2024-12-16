@@ -9,6 +9,11 @@
     text-align: center;
 }
 
+.partidoJugar{
+    display: block;
+    padding: 0;
+}
+
 .content{
     width: 100%;
 }
@@ -79,10 +84,12 @@
     text-align: center;
 }
 
+.btnMatch {
+    display: block;
+    position: relative;
+}
+
 .inicioPartido {
-    position: absolute;
-    top: 50px;
-    left: 0;
     background-color: #35393C;
     color: #f3e6e0;
     border: none;
@@ -96,9 +103,6 @@
 }
 
 .terminarPartido {
-    position: absolute;
-    top: 50px;
-    left: 120px;
     background-color: #35393C;
     color: #f3e6e0;
     border: none;

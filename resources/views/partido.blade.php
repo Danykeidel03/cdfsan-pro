@@ -436,9 +436,11 @@
 
     @endphp
 @section('content')
-    <div id="panel-datos">
-        <button class="terminarPartido" >Finalizar</button>
-        <button class="inicioPartido">Iniciar Partido</button>
+    <div id="panel-datos partidoJugar">
+        <div class="btnMatch">
+            <button class="terminarPartido" >Finalizar</button>
+            <button class="inicioPartido">Iniciar Partido</button>
+        </div>
         <div class="marcador">
             <div class="sanAn">
                 <p class="nombre">San Andres</p>
