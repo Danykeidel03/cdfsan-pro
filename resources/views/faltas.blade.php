@@ -213,6 +213,7 @@
                         return res.json();
                     })
                     .then(data => {
+                        alert('Faltas Y Notas Añadidas')
                     })
                     .catch(error => {
                         console.error('GUARDAR error:', error);
