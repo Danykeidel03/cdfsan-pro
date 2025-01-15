@@ -42,8 +42,17 @@
                 }
             });
             let btnAddFalta = document.querySelector('.crearFaltas');
-            btnAddFalta.addEventListener('click', () => addFaltas(id_equipo));
-            btnAddFalta.addEventListener('click', () => addNotas(id_equipo));
+            const fechaInput = document.querySelector('#fecha-faltas');
+
+            btnAddFalta.addEventListener('click', () => {
+                if (fechaInput.value === "") {
+                    alert('Selecciona una fecha');
+                } else {
+                    // Llamar ambas funciones con id_equipo
+                    addFaltas(id_equipo);
+                    addNotas(id_equipo);
+                }
+            });
 
             // getFechas(id_equipo)
 
@@ -150,32 +159,32 @@
 
                 let fecha = document.querySelector('#fecha-faltas')
 
-                var form_data = new FormData();
-                form_data.append("accion", "addFalta");
-                form_data.append("equipo", equipo);
-                form_data.append("jugadoresFalta", arrayCheckboxes);
-                form_data.append("fecha", fecha.value);
+                    var form_data = new FormData();
+                    form_data.append("accion", "addFalta");
+                    form_data.append("equipo", equipo);
+                    form_data.append("jugadoresFalta", arrayCheckboxes);
+                    form_data.append("fecha", fecha.value);
 
-                fetch("{{ $ajaxUrl }}", {
-                    method: 'POST',
-                    headers: {
-                        "Accept": "application/json",
-                        "X-CSRF-TOKEN": "{{ csrf_token() }}",
-                    },
-                    body: form_data,
-                    cache: 'no-cache',
-                })
-                    .then(res => {
-                        return res.json();
+                    fetch("{{ $ajaxUrl }}", {
+                        method: 'POST',
+                        headers: {
+                            "Accept": "application/json",
+                            "X-CSRF-TOKEN": "{{ csrf_token() }}",
+                        },
+                        body: form_data,
+                        cache: 'no-cache',
                     })
-                    .then(data => {
-                    })
-                    .catch(error => {
-                        console.error('GUARDAR error:', error);
-                    })
-                    .finally(() => {
-                        console.log('jugadores sacados');
-                    });
+                        .then(res => {
+                            return res.json();
+                        })
+                        .then(data => {
+                        })
+                        .catch(error => {
+                            console.error('GUARDAR error:', error);
+                        })
+                        .finally(() => {
+                            console.log('jugadores sacados');
+                        });
             });
         }
 
@@ -184,7 +193,9 @@
             Pace.track(function () {
 
                 const checkboxesNoMarcados = document.querySelectorAll('.faltas-asistencia[type="checkbox"]:not(:checked)');
-                const arrayCheckboxes = Array.from(checkboxesNoMarcados).map(checkbox => checkbox.id);
+                const arrayCheckboxes = Array.from(checkboxesNoMarcados).map(checkbox => {
+                    checkbox.id
+                });
                 const arrayNotas = Array.from(document.querySelectorAll('.rendimientoJugador')).map((element, index) => ({
                     id: element.id,
                     rendimiento: element.value,
@@ -196,7 +207,7 @@
                 var form_data = new FormData();
                 form_data.append("accion", "addNotas");
                 form_data.append("equipo", equipo);
-                form_data.append("jugadoresFalta", arrayCheckboxes);
+                form_data.append("jugadoresFalta", JSON.stringify(arrayCheckboxes));
                 form_data.append("fecha", fecha.value);
                 form_data.append("nota", JSON.stringify(arrayNotas));
 
@@ -217,43 +228,14 @@
                     })
                     .catch(error => {
                         console.error('GUARDAR error:', error);
+                        alert('Faltas Y Notas Añadidas')
                     })
                     .finally(() => {
                         console.log('jugadores sacados');
                     });
+
             });
         }
-
-        {{--function getFechas(equipo){--}}
-
-        {{--    var form_data = new FormData();--}}
-        {{--    form_data.append("accion", "getFechas");--}}
-        {{--    form_data.append("equipo", equipo);--}}
-
-        {{--    fetch("{{ $ajaxUrl }}", {--}}
-        {{--        method: 'POST',--}}
-        {{--        headers: {--}}
-        {{--            "Accept": "application/json",--}}
-        {{--            "X-CSRF-TOKEN": "{{ csrf_token() }}",--}}
-        {{--        },--}}
-        {{--        body: form_data,--}}
-        {{--        cache: 'no-cache',--}}
-        {{--    })--}}
-        {{--        .then(res => {--}}
-        {{--            return res.json();--}}
-        {{--        })--}}
-        {{--        .then(data => {--}}
-        {{--            data.forEach( item => {--}}
-        {{--                console.log(item.fecha)--}}
-        {{--            })--}}
-        {{--        })--}}
-        {{--        .catch(error => {--}}
-        {{--            console.error('GUARDAR error:', error);--}}
-        {{--        })--}}
-        {{--        .finally(() => {--}}
-        {{--            console.log('fechas sacadas');--}}
-        {{--        });--}}
-        {{--}--}}
 
         function abrirOverlay(){
             let over = document.querySelector('.ventanaModal');
