@@ -200,6 +200,8 @@
                         })
                         .catch(error => {
                             console.error('GUARDAR error:', error);
+                            location.reload();
+
                         })
                         .finally(() => {
                         });
@@ -277,6 +279,7 @@
                         })
                         .catch(error => {
                             console.error('GUARDAR error:', error);
+                            location.reload();
                         })
                         .finally(() => {
                         });
@@ -387,6 +390,7 @@
                         })
                         .catch(error => {
                             console.error('GUARDAR error:', error);
+                            location.reload();
                         })
                         .finally(() => {
                         });
