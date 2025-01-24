@@ -215,6 +215,7 @@
 
 .todosJugadores #jugadoresEquipo thead th, .todosJugadores #jugadoresEquipo tbody td{
     border: 0;
+    max-width: 100%;
 }
 
 .imgEquipo{
