@@ -110,6 +110,7 @@ class Partido extends addJugadores
 
             $sumaMinutosTitular = $jugadorASumarTitularEntraSum + $minutosSumar;
 
+            $sumaMinutosTitular = $sumaMinutosTitular + $jugadorASumarTitular;
 
             DB::table('jugadores')
                 ->where('id_jugador', '=', $idJugadorTitular)
@@ -274,17 +275,20 @@ class Partido extends addJugadores
         if ($CambioFin !== 0 && $minutosTotalesCambio->minutoEntra !== 0) {
             $minutosJugados = $minutos - $minutosTotales->minutoEntra;
             $minutosAdd = $minutosFin + $minutosJugados;
+//            $this->grabarLog("en el if: ". $minutosAdd);
         } else {
             $minutosTotalesSiEsCero = DB::table('minutos')
-                ->select('minutoEntra', 'ultimoCambio')
+                ->select('minutoEntra', 'ultimoCambio','minutos')
                 ->where('id_partido', $idMatch)
                 ->where('id_jugador', '=', $idJugadorTitular)
                 ->first();
 
             if ($minutosTotalesSiEsCero->minutoEntra == 0 && $minutosTotalesSiEsCero->ultimoCambio == 0){
                 $minutosAdd = $minutos;
+//                $this->grabarLog("en el if del else: ". $minutosAdd);
             }else{
-                $minutosAdd = $minutos - $minutosTotalesSiEsCero->minutoEntra;
+                $minutosAdd = $minutosTotalesSiEsCero->minutos + ($minutos - $minutosTotalesSiEsCero->minutoEntra);
+//                $this->grabarLog("en el else del else: ". $minutosAdd);
             }
         }
 

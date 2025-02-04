@@ -111,7 +111,6 @@ class Faltas extends Jugadores
             $arrayFaltas = explode(',', $jugadores);
 
             foreach ($arrayFaltas as $jugador){
-                $this->grabarLog($jugador);
                 $insertado = DB::table('faltas_asistencia')->insert([
                     'id_jugador' => $jugador,
                     'fecha' => $fecha,
@@ -151,34 +150,37 @@ class Faltas extends Jugadores
         $arrayNotas = json_decode($notas, true);
 
         foreach ($arrayNotas as $jugadorFinal){
-            $idJugador = ($jugadorFinal['id']);
-            $mediaNotas = ($jugadorFinal['rendimiento'] + $jugadorFinal['actitud']) / 2;
+            if($jugadorFinal['rendimiento'] && $jugadorFinal['actitud']){
+                $idJugador = ($jugadorFinal['id']);
+                $mediaNotas = ($jugadorFinal['rendimiento'] + $jugadorFinal['actitud']) / 2;
 
-            $insertado = DB::table('notas_jugadores')->insert([
-                'id_jugador' => $idJugador,
-                'fecha' => $fecha,
-                'id_equipoSan' => $equipo,
-                'nota_media' => $mediaNotas,
-            ]);
+                $insertado = DB::table('notas_jugadores')->insert([
+                    'id_jugador' => $idJugador,
+                    'fecha' => $fecha,
+                    'id_equipoSan' => $equipo,
+                    'nota_media' => $mediaNotas,
+                ]);
 
-            $notasTotales = DB::table('notas_jugadores')
-                ->select('nota_media')
-                ->where('id_jugador', $idJugador)
-                ->get();
+                $notasTotales = DB::table('notas_jugadores')
+                    ->select('nota_media')
+                    ->where('id_jugador', $idJugador)
+                    ->get();
 
-            $notaTotal = 0;
+                $notaTotal = 0;
 
-            foreach ($notasTotales as $nota) {
-                $notaTotal = $notaTotal + $nota->nota_media;
+                foreach ($notasTotales as $nota) {
+                    $notaTotal = $notaTotal + $nota->nota_media;
+                }
+
+                $notaTotal = $notaTotal / count($notasTotales);
+
+                DB::table('jugadores')
+                    ->where('id_jugador', '=', $idJugador)
+                    ->update([
+                        'media_total' => $notaTotal
+                    ]);
             }
 
-            $notaTotal = $notaTotal / count($notasTotales);
-
-            DB::table('jugadores')
-                ->where('id_jugador', '=', $idJugador)
-                ->update([
-                    'media_total' => $notaTotal
-                ]);
         }
 
         return 'Todo bien';
