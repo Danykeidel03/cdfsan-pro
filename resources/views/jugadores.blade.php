@@ -235,7 +235,7 @@
                                     jugador.partidos,
                                     jugador.minutos,
                                     jugador.goles,
-                                    jugador.media_total,
+                                    jugador.media_total.toFixed(2),
                                 ]);
                             });
                             tablaTodos.draw();
