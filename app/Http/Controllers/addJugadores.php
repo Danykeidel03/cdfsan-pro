@@ -112,7 +112,7 @@ class addJugadores extends Controller
                 $nombreEquipo = json_decode($nombreEquipo, true);
 
                 $jugadoresFinal = DB::table('jugadores')
-                    ->select('id_jugador','nombre','apellidos', 'equipo', 'fechaNac','minutos','partidos','goles','media_total')
+                    ->select('id_jugador','nombre','apellidos', 'equipo', 'fechaNac','minutos','partidos','goles','faltasTotales','media_total')
                     ->where('equipo', $nombreEquipo)
                     ->get();
             }

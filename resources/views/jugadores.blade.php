@@ -231,10 +231,11 @@
                                 }
 
                                 tablaTodos.row.add([
-                                    jugador.nombreCompleto,    // Columna 1: Nombre del jugador
+                                    jugador.nombre,    // Columna 1: Nombre del jugador
                                     jugador.partidos,
                                     jugador.minutos,
                                     jugador.goles,
+                                    jugador.faltasTotales,
                                     jugador.media_total.toFixed(2),
                                 ]);
                             });
@@ -349,6 +350,7 @@
                     <th>Partidos</th>
                     <th>Minutos</th>
                     <th>Goles</th>
+                    <th>Faltas</th>
                     <th>Media</th>
                 </tr>
                 </thead>
