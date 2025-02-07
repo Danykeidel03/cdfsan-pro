@@ -1,5 +1,6 @@
 .todosJugadores .dt-layout-cell.dt-start #jugadoresEquipo_info,
-.dt-paging-button.last{
+.dt-paging-button.last,
+.dt-paging-button.first{
     display: none;
 }
 
