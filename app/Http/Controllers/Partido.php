@@ -68,6 +68,10 @@ class Partido extends addJugadores
                 $sumaMinutos = $jugadorASumar + $minutosFinales;
                 $sumaPartidos = $jugadorpartidos + 1;
 
+                if($sumaMinutos == 0 ){
+                    $sumaPartidos = $jugadorpartidos;
+                }
+
                 DB::table('jugadores')
                     ->where('id_jugador', '=', $idJugador)
                     ->update([
@@ -111,6 +115,10 @@ class Partido extends addJugadores
             $sumaMinutosTitular = $jugadorASumarTitularEntraSum + $minutosSumar;
 
             $sumaMinutosTitular = $sumaMinutosTitular + $jugadorASumarTitular;
+
+            if($sumaMinutosTitular == 0 ){
+                $jugadorpartidosTitularSumar = $jugadorpartidosTitular;
+            }
 
             DB::table('jugadores')
                 ->where('id_jugador', '=', $idJugadorTitular)
