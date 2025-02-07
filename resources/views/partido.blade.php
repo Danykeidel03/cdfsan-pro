@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/cabecera.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/equipos.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/jugadores.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/partido.css') }}">
     <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
 @stop
 @push('js')
@@ -20,9 +21,9 @@
             var tablaSuplentes
             $(document).ready(function () {
                 tablaTodos = $('#jugadoresEquipo').DataTable({
-                    info: false,
-                    autoWidth: false,
-                    pageLength: 20, // Mostrar 20 registros por defecto
+                    // info: false,
+                    // autoWidth: false,
+                    pageLength: 5, // Mostrar 20 registros por defecto
                     oLanguage: {
                         "sSearch": "",
                     },
