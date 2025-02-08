@@ -466,7 +466,7 @@
             <div class="overlay"></div>
             <div class="formJugador">
                 <div class="todosJugadores">
-                    <table id="jugadoresEquipo" class="display" style="width:100%; padding-top: 20px;">
+                    <table id="jugadoresEquipo" class="display" style="width:100%; padding-top: 0px;">
                         <thead>
                         <tr>
                             <th>Nombre</th>
