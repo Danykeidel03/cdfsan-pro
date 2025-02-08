@@ -310,7 +310,7 @@
 
     #jugadoresEquipo thead th,
     #jugadoresEquipo tbody td {
-        font-size: 13px;
+        font-size: 10px;
         max-width: 25%;
     }
     #jugadoresEquipo thead th:first-child, #jugadoresEquipo tbody td:first-child{
