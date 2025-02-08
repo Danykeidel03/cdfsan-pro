@@ -21,9 +21,9 @@
             var tablaSuplentes
             $(document).ready(function () {
                 tablaTodos = $('#jugadoresEquipo').DataTable({
-                    // info: false,
-                    // autoWidth: false,
-                    pageLength: 5, // Mostrar 20 registros por defecto
+                    info: false,
+                    autoWidth: false,
+                    pageLength: 20, // Mostrar 20 registros por defecto
                     oLanguage: {
                         "sSearch": "",
                     },
