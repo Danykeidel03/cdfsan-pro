@@ -1,13 +1,13 @@
-.todosJugadores .dt-layout-cell.dt-start #jugadoresEquipo_info,
-.dt-paging-button.last,
-.dt-paging-button.first{
-    display: none;
-}
+/*.todosJugadores .dt-layout-cell.dt-start #jugadoresEquipo_info,*/
+/*.dt-paging-button.last,*/
+/*.dt-paging-button.first{*/
+/*    display: none;*/
+/*}*/
 
-.todosJugadores .dt-paging.paging_full_numbers{
-    display: flex; !important;
-    margin-top: 20px;
-}
+/*.todosJugadores .dt-paging.paging_full_numbers{*/
+/*    display: flex; !important;*/
+/*    margin-top: 20px;*/
+/*}*/
 @media (max-width: 600px) {
     #jugadoresEquipo thead th:first-child, #jugadoresEquipo tbody td:first-child {
         max-width: 63%;
