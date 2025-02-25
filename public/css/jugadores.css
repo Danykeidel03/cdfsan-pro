@@ -188,6 +188,13 @@
     display: none;
 }
 
+.minutosFinales{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .todosJugadores #jugadoresEquipo{
     border: 0;
 }

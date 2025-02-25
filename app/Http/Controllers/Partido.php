@@ -8,6 +8,8 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Masterminds\HTML5\Exception;
+use stdClass;
+use function Symfony\Component\HttpKernel\Debug\push;
 
 class Partido extends addJugadores
 {
@@ -46,8 +48,11 @@ class Partido extends addJugadores
     }
 
     public function finalizarMtach($idMatch, $resultado){
+
+        $arrayMinutosPartido = [];
+
         $suplentes = DB::table('minutos')
-            ->select('id_jugador', 'minutos')
+            ->select('id_jugador', 'minutos','nombre')
             ->where('id_partido', $idMatch)
             ->where('titular', 0)
             ->get();
@@ -55,6 +60,7 @@ class Partido extends addJugadores
             foreach ($suplentes as $suplente) {
                 $idJugador = $suplente->id_jugador;
                 $minutosFinales = $suplente->minutos;
+                $nombreJugadorSuplente = $suplente->nombre;
 
                 $minutosActuales = DB::table('jugadores')
                     ->select('minutos','partidos')
@@ -67,6 +73,12 @@ class Partido extends addJugadores
 
                 $sumaMinutos = $jugadorASumar + $minutosFinales;
                 $sumaPartidos = $jugadorpartidos + 1;
+
+                $objeto = new stdClass();
+                $objeto->nombre = $nombreJugadorSuplente;
+                $objeto->minutos = $minutosFinales;
+
+                $arrayMinutosPartido[] = $objeto;
 
                 if($sumaMinutos == 0 ){
                     $sumaPartidos = $jugadorpartidos;
@@ -82,13 +94,14 @@ class Partido extends addJugadores
 
 
         $titulares = DB::table('minutos')
-            ->select('id_jugador')
+            ->select('id_jugador','nombre')
             ->where('id_partido', $idMatch)
             ->where('titular', 1)
             ->get();
 
         foreach ($titulares as $titular) {
             $idJugadorTitular = $titular->id_jugador;
+            $nombreJugadorTitular = $titular->nombre;
 
             $minutosActualesTitular = DB::table('jugadores')
                 ->select('minutos','partidos')
@@ -120,6 +133,12 @@ class Partido extends addJugadores
                 $jugadorpartidosTitularSumar = $jugadorpartidosTitular;
             }
 
+            $objeto = new stdClass();
+            $objeto->nombre = $nombreJugadorTitular;
+            $objeto->minutos = $minutosSumar;
+
+            $arrayMinutosPartido[] = $objeto;
+
             DB::table('jugadores')
                 ->where('id_jugador', '=', $idJugadorTitular)
                 ->update([
@@ -132,10 +151,6 @@ class Partido extends addJugadores
 
         //falta acabar el partido como tal
 
-        $deleteMinutos = DB::table('minutos')
-                ->where('id_partido', $idMatch)
-                ->delete() > 0;
-
         DB::table('partidos')
             ->where('id_partido', '=', $idMatch)
             ->update([
@@ -143,6 +158,11 @@ class Partido extends addJugadores
                 'resultado' => $resultado
             ]);
 
+        $deleteMinutos = DB::table('minutos')
+                ->where('id_partido', $idMatch)
+                ->delete() > 0;
+
+        return $arrayMinutosPartido;
     }
 
     public function addGol($idPlayer){

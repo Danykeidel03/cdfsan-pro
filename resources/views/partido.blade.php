@@ -126,6 +126,7 @@
                             let horaPartido = document.querySelector('.horario .horaPartido')
                             horaPartido.textContent = equipo.hora
 
+                            document.querySelector('.minutosFinales').id = equipo.id_equipoSan;
                             obtenerInformacionJugadores(equipo.id_equipoSan)
                         })
                         .catch(error => {
@@ -426,7 +427,17 @@
                             return res.json();
                         })
                         .then(data => {
-                            location.reload();
+                            console.log(data)
+                            let divMinutosFinales = document.querySelector('.minutosFinales');
+
+                            data.forEach(item => {
+                                let div = document.createElement('div'); // Crea un nuevo div
+                                div.textContent = `${item.nombre}: ${item.minutos} minutos`; // Agrega el contenido con nombre y minutos
+                                divMinutosFinales.appendChild(div); // Lo agrega al contenedor principal
+                            });
+                            document.querySelector('.btn-EndMatch').addEventListener('click', function () {
+                                window.location.href = "{{ route('jugadores') }}?id_equipo=" + document.querySelector('.minutosFinales').id;
+                            });
                         })
                         .catch(error => {
                             console.error('GUARDAR error:', error);
@@ -510,7 +521,10 @@
             <div class="formJugador">
                 <p>Resultado</p>
                 <input type="text" class="resultadoFinalMatch" id="resultadoFinalMatch" onclick="finalizarPartido()">
-                <button onclick="finalizarPartido()">FINALIZAR</button>
+                <button class="btn-EndMatch" onclick="finalizarPartido()">FINALIZAR</button>
+                <div class="minutosFinales">
+                    <p>Minutos Partido</p>
+                </div>
             </div>
         </div>
     </div>
